@@ -46,13 +46,11 @@ const validaUsuario = [
     check('tipo')
         .default('Cliente')
         .isIn(['Admin', 'Cliente']).withMessage('O tipo deve ser Admin ou Cliente'),
-    check('avatar')
-        .optional({ nullable: true })
-        .isURL().withMessage('A URL do avatar é inválida')
+    check('pontos').isNumeric().withMessage('Os pontos devem ser um número'),
 ]
 
 //POST de Usuário
-router.post('/', auth, validaUsuario, async (req, res) => {
+router.post('/', validaUsuario, async (req, res) => {
     const schemaErrors = validationResult(req)
     if (!schemaErrors.isEmpty()) {
         return res.status(403).json({

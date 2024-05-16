@@ -5,6 +5,7 @@ db.usuarios.insertOne({
     'senha': 'Mateus123#',
     'ativo': true,
     'tipo': 'Admin',
+    'pontos': 100
 })
 //Criando um índice único
 use('EcosRev')
