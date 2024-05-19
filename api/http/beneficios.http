@@ -4,7 +4,7 @@
 // GET - Lista todos os benefícios
 GET {{baseURL}}
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0MTYxYjc5YTk0ZTYxZTRlYWRjNmQ2In0sImlhdCI6MTcxNTU2MTA2OCwiZXhwIjoxNzE1NjQ3NDY4fQ.LsmGiyFKhhBV3z9eomvLgfnt9r8VltAw_dNyG7bXTRk
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIn0sImlhdCI6MTcxNjEzNDIyMSwiZXhwIjoxNzE2MjIwNjIxfQ.KJ_KWJr9T8IiR5ItmvlPouoJB1x-rf0E3kQY85h8c_Y
 
 ###
 // GET - Lista o benefício pelo ID
@@ -43,10 +43,10 @@ access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0M
 
 PUT {{baseURL}}
 Content-Type: application/json
-access-token: etJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjYzOTVmMDZiZGIxYTQyMzcyMGRjZmEyIn0sImlhdCI6MTcxNTAzNzIwMywiZXhwIjoxNzE1MTIzNjAzfQ.l76Ccoiw-_2ZfYD23SYfrGiD-1_CifmbKC0Edch-2UI
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIn0sImlhdCI6MTcxNjEzNDIyMSwiZXhwIjoxNzE2MjIwNjIxfQ.KJ_KWJr9T8IiR5ItmvlPouoJB1x-rf0E3kQY85h8c_Y
 
 {
-    "_id": "6626e3bdca7839f56bac56bb",
+    "_id": "6626f79e35fe58b15fb70ad7",
     "nome": "Show do RBD",
     "data": "2024-12-12",
     "endereco": "Av 31 de março",

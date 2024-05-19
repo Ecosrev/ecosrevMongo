@@ -1,7 +1,0 @@
-use('EcosRev')
-const produto = {
-    "nome": "Celular",
-    "categoria": "Pequeno",
-    "reutilizavel": true
-}
-db.produto.insertOne(produto)

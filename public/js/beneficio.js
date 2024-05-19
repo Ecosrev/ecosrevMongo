@@ -1,4 +1,7 @@
 const urlBase = 'http://localhost:4000/api'
+const access_token = localStorage.getItem('token') || null
+const resultadoModal = new bootstrap.Modal(document.getElementById('modalMensagem'))
+const attForm = new bootstrap.Modal(document.getElementById('modalForm'))
 
 async function carregaBeneficio(){
     const tabela = document.getElementById('dadosTabela')
@@ -7,12 +10,13 @@ async function carregaBeneficio(){
     await fetch(`${urlBase}/beneficio`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'access-token' : access_token
         }
     })
     .then(response => response.json())
     .then(data => {
-        // console.table(data)
+        //console.table(data)
         data.forEach(beneficio => {
             tabela.innerHTML += `
             <tr>
@@ -23,6 +27,7 @@ async function carregaBeneficio(){
               <td>${beneficio.quantidade}</td>
               <td>
         <button class='btn btn-danger btn-sm' onclick='removeBeneficio("${beneficio._id}")'>🗑 Excluir </button>
+        <button class='btn btn-success btn-sm' onclick='carregaAtt("${beneficio._id}")'>📝 Atualizar </button>
               </td>
             </tr>
             `
@@ -34,7 +39,9 @@ async function removeBeneficio(id){
     if(confirm('Deseja realmente excluir este beneficio?')){
         await fetch(`${urlBase}/beneficio/${id}`, {
             method: 'DELETE',
-            headers: {'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json',
+            'access-token' : access_token
+            }
         })
         .then(response => response.json())
         .then(data => {
@@ -47,10 +54,35 @@ async function removeBeneficio(id){
         })
     }
 }
-document.getElementById('formBeneficio').addEventListener('submit', function (event){
+
+async function atualizaBeneficio(beneficio){
+    await fetch(`${urlBase}/beneficio`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'access-token' : access_token
+        },
+        body: JSON.stringify(beneficio)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.acknowledged) {
+            alert('Beneficio atualizado com sucesso!')
+            //atualizamos a listagem
+            carregaBeneficio()
+        } else if (data.errors){
+ const errorMessages = data.errors.map(error => error.msg).join('\n')
+ document.getElementById('mensagem').innerHTML = `<span class='text-danger'>${errorMessages}</span>`
+ resultadoModal.show() //Mostra o modal
+        }
+    })
+}
+
+document.getElementById('botaoAtt').addEventListener('click', function (event){
     event.preventDefault() // evita o recarregamento
-    let beneficio = {} // Objeto beneficio
+    //let beneficio = {} // Objeto beneficio
     beneficio = {
+        "_id": document.getElementById('idAtt').value,
         "nome": document.getElementById('nome1').value,
         "data": document.getElementById('data2').value,
         "endereco": document.getElementById('endereco3').value,
@@ -58,25 +90,27 @@ document.getElementById('formBeneficio').addEventListener('submit', function (ev
         "quantidade": document.getElementById('quantidade5').value
     } /* fim do objeto */
     //alert(JSON.stringify(beneficio)) //apenas para testes
-    salvaBeneficio(beneficio)
+    atualizaBeneficio(beneficio)
+    attForm.hide()
 })
 
-async function salvaBeneficio(beneficio){
-    await fetch(`${urlBase}/beneficio`, {
-        method: 'POST',
+async function carregaAtt(id){
+    attForm.show()
+    await fetch(`${urlBase}/beneficio/id/${id}`, {
+        method: 'GET',
         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(beneficio)
+            'Content-Type': 'application/json',
+            'access-token' : access_token
+        }
     })
     .then(response => response.json())
     .then(data => {
-        if (data.acknowledged) {
-            alert('Beneficio incluído com sucesso!')
-            //atualizamos a listagem
-        } else if (data.errors){
- const errorMessages = data.errors.map(error => error.msg).join('\n')
-        }
+        //console.log(data[0]._id)
+        document.getElementById('idAtt').value = data[0]._id
+        document.getElementById('nome1').value = data[0].nome
+        document.getElementById('data2').value = data[0].data
+        document.getElementById('endereco3').value = data[0].endereco
+        document.getElementById('pontos4').value = data[0].pontos
+        document.getElementById('quantidade5').value = data[0].quantidade
     })
-
 }
