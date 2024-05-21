@@ -36,37 +36,28 @@
         <object data="images/logo.svg" class="navbar-brand" href="#"></object>
       </div>
     </nav>
-    <div class="container mt-5">
+    <div class="conteudo">
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="card shadow">
             <div class="card-header">
-              <h1>Área Restrita</h1>
+              <h1>Redefinição de Senha</h1>
             </div>
             <div class="card-body">
               <form id="formLogin">
                 <div class="mb-2">
-                  <label for="login" class="form-label">E-mail:</label>
+                  <label for="redefinirSenha" class="form-label">Código de verificação:</label>
                   <input
-                    type="email"
+                    type="number"
                     class="form-control"
-                    id="login"
-                    name="login"
+                    id="codigoVerificacao"
+                    name="codigoVerificacao"
                     autofocus
-                    autocomplete="email"
-                  />
-                </div>
-                <div class="mb-2">
-                  <label for="senha" class="form-label">Senha:</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="senha"
-                    name="senha"
+                    placeholder="Insira seu código de verificação"
                   />
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn" id="botaoLogin">Login</button>
+                  <button type="submit" class="btn" id="botaoLogin">Cadastrar</button>
                 </div>
               </form>
             </div>

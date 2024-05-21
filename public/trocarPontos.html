@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<body onload="carregaBeneficio()">
+<body onload="carregaBeneficio()" class="usuarioBackground">
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -24,10 +24,10 @@
                 <a class="nav-link" aria-current="page" href="menu.html"><h6>Início</h6></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="cadastro.html"><h6>Cadastrar Benefícios</h6></a>
+                <a class="nav-link" href="cadastro.html"><h6>Ver meu perfil</h6></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="tabela.html"><h6>Benefícios</h6></a>
+                <a class="nav-link active" href="tabela.html"><h6>Trocar pontos</h6></a>
               </li>
             </ul>
           </div>
@@ -41,13 +41,18 @@
                 <th>Local de Retirada</th>
                 <th>Pontos</th>
                 <th>Quantidade</th>
-                <th>Ações</th> <!-- Nova coluna para ações -->
+                <th>Adicionar ao carrinho</th> <!-- Nova coluna para ações -->
             </tr>
         </thead>
         <tbody id="dadosTabela">
 
         </tbody>
     </table>
+
+    <div class="saldo">
+      <h2>Saldo de Pontos</h2>
+      <p id="saldo">0 pontos</p>
+  </div>
   <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog">
     <div class="modal-dialog bg-danger" role="document">
       <div class="modal-content">
@@ -100,7 +105,7 @@
             <div class="mt-3">
               <button id="botaoAtt" class="btn" type="button">Salvar</button>
             </div>
-        </form>
+        </form>     
         </div>
       </div>
     </div>

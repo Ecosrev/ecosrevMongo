@@ -1,10 +1,14 @@
 body {
     background-color: rgb(220, 225, 225);
 }
+
+.usuarioBackground{
+    background-color: white;
+}
 h5 {
     display: flex;
     flex-direction: row;
-    margin-left: 100px;
+    margin-left: 15%;
 }
 
 .arvore {
@@ -73,8 +77,10 @@ body {
 
 #botaoLogin{
     background-color: rgba(153, 196, 68, 100%);
-    width: 100px;
+    width: 25%;
+    height: 50%;
     color: white;   
+    text-align: center;
 };
 
 h4{
@@ -96,3 +102,26 @@ footer{
     color: white   ;
 }
 
+.rodape {
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    
+  }
+
+  .conteudo {
+    min-height: calc(100vh - 40px); 
+    padding-bottom: 40px; 
+    overflow: auto; 
+}
+
+.saldo {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    margin-left: 70%;
+    
+}
