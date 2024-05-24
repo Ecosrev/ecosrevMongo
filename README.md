@@ -14,7 +14,7 @@ Trabalho desenvolvido com o foco no projeto Ecosrev, visando uma melhora em sua 
 
 O Ecosrev é um projeto focado em melhorar o meio ambiente, fornecendo um incentivo ao recolher lixo eletrônico dos habitantes em troca de benefícios
 ###
-## Descrição
+## 📃Sobre o projeto
 
 O Projeto EcosRev é um website desenvolvido com o propósito de incentivar o descarte correto de resíduos eletroeletrônicos, promovendo a conexão entre empresas coletoras de lixo eletrônico e cidadãos. O objetivo principal é facilitar o processo de descarte, aumentando a conscientização ambiental e contribuindo para a preservação do meio ambiente.
 
