@@ -88,6 +88,26 @@ router.get('/', auth, async(req, res)=> {
     }
 })
 
+router.get('/id/:id', auth, async (req, res) => {
+    try {
+      const docs = []
+      await db.collection(nomeCollection)
+        .find({ '_id': { $eq: new ObjectId(req.params.id) } }, {})
+        .forEach((doc) => {
+          docs.push(doc)
+        })
+      res.status(200).json(docs)
+    } catch (err) {
+      res.status(500).json({
+        errors: [{
+          value: `${err.message}`,
+          msg: 'Erro ao obter o usuário pelo ID',
+          param: '/id/:id'
+        }]
+      })
+    }
+  })
+
 const validaLogin = [
     check('email')
         .not().isEmpty().trim().withMessage('O email é obrigatório')
@@ -128,7 +148,7 @@ router.post('/login', validaLogin, async(req, res)=> {
           })
        //Iremos gerar o token JWT
        jwt.sign(
-          { usuario: {id: usuario[0]._id} },
+        { usuario: {id: usuario[0]._id, tipo: usuario[0].tipo}},
           process.env.SECRET_KEY,
           { expiresIn: process.env.EXPIRES_IN },
           (err, token) => {
@@ -137,7 +157,7 @@ router.post('/login', validaLogin, async(req, res)=> {
                 access_token: token
             })
           }
-       )   
+       ) 
     } catch (e){
         console.error(e)
     }

@@ -16,7 +16,7 @@ Content-Type: application/json
 // GET - Lista todos os usuários
 GET {{baseURL}}
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0MTYxYjc5YTk0ZTYxZTRlYWRjNmQ2In0sImlhdCI6MTcxNTU2MTA2OCwiZXhwIjoxNzE1NjQ3NDY4fQ.LsmGiyFKhhBV3z9eomvLgfnt9r8VltAw_dNyG7bXTRk
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIiwidGlwbyI6IkFkbWluIn0sImlhdCI6MTcxNzI2Mzg1MywiZXhwIjoxNzE3MzUwMjUzfQ.uSqEAsaGIV14dmLCbx6oUQRtX37qinyqSB1VaS60JkQ
 
 ###
 // POST - Efetua o login
@@ -27,3 +27,8 @@ Content-Type: application/json
     "email": "sandman2871@gmail.com",
     "senha": "Mateus123#"
 }
+
+###
+GET {{baseURL}}/id/66455346790bab4c8d53b4aa
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIn0sImlhdCI6MTcxNjc1NTEyNywiZXhwIjoxNzE2ODQxNTI3fQ.mm6E1ESpyU2nMgi_kgn29FwiT8f89f8FyN694hJU2Z8
