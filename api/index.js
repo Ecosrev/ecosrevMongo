@@ -35,6 +35,8 @@ app.get('/api', (req, res)=> {
     })
 })
 //Rotas da API
+
+
 app.use('/api/beneficio', RotasBeneficio)
 app.use('/api/usuario', RotasUsuarios)
 //Listen

@@ -30,8 +30,8 @@ document.getElementById('formLogin')
                 const errorMessages = data.errors.map(error => error.msg).join('<br>')
                 //Alteramos a mensagem no modal
                 document.getElementById('mensagem').innerHTML = `<span class='text-danger'>${errorMessages}</span>`
+                msgModal.show()
                 }
                 //alert(senha) //apenas para testes
-                msgModal.show()
             })
         })

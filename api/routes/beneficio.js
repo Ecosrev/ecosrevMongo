@@ -19,6 +19,8 @@ check('data').matches(/^\d{4}-\d{2}-\d{2}$/)
 check('quantidade').isNumeric().withMessage('A quantidade deve ser um número'),
 ]
 
+
+
 /**
  * GET /api/beneficios
  * Lista todos os benefícios
