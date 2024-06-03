@@ -9,7 +9,8 @@ Content-Type: application/json
     "nome": "Mateus",
     "email": "sandman2871@gmail.com",
     "senha": "Mateus123#",
-    "tipo": "Admin"
+    "tipo": "Admin",
+    "pontos":1200
 }
 
 ###
