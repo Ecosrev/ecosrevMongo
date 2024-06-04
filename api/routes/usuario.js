@@ -116,6 +116,23 @@ const validaLogin = [
         .not().isEmpty().trim().withMessage('A senha é obrigatória')    
 ]
 
+router.get('/pontos', auth, async(req, res)=> {
+    try{
+        const docs = []
+        await db.collection(nomeCollection)
+        .find({ '_id': { $eq: new ObjectId(req.usuario.id) } }, {})
+        .forEach((doc) => {
+            docs.push(doc)
+          })
+        res.status(200).json(docs)
+    } catch (err){
+        res.status(500).json({
+            message: 'Erro ao obter a listagem dos pontos do usuário',
+            error: `${err.message}`
+        })
+    }
+})
+
 router.post('/login', validaLogin, async(req, res)=> {
     const schemaErrors = validationResult(req)
     if(!schemaErrors.isEmpty()){
@@ -135,7 +152,7 @@ router.post('/login', validaLogin, async(req, res)=> {
                 msg: `O email ${email} não está cadastrado!`,
                 param: 'email'
             }]
-           }) 
+           })
        //Se o email existir, comparamos se a senha está correta
        const isMatch = await bcrypt.compare(senha, usuario[0].senha)    
        if (!isMatch)
@@ -146,6 +163,7 @@ router.post('/login', validaLogin, async(req, res)=> {
                 param: 'senha'
             }]
           })
+        const redirectUrl = usuario[0].tipo === 'Admin' ? 'menu.html' : 'menuUser.html'
        //Iremos gerar o token JWT
        jwt.sign(
         { usuario: {id: usuario[0]._id, tipo: usuario[0].tipo}},
@@ -154,13 +172,15 @@ router.post('/login', validaLogin, async(req, res)=> {
           (err, token) => {
             if (err) throw err
             res.status(200).json({
-                access_token: token
+                access_token: token,
+                redirect_url: redirectUrl
             })
           }
-       ) 
+       )
     } catch (e){
         console.error(e)
     }
 
 })
+  
 export default router

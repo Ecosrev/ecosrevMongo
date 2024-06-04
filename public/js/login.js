@@ -24,14 +24,14 @@ document.getElementById('formLogin')
                 if(data.access_token){
                     //Armazenamos o token no LocalStorage
                     localStorage.setItem('token', data.access_token)
-                    window.location.href = 'menu.html'
+                    window.location.href = data.redirect_url
                 } else if(data.errors) {
                     //Vamos pegar os erros da API
                 const errorMessages = data.errors.map(error => error.msg).join('<br>')
                 //Alteramos a mensagem no modal
                 document.getElementById('mensagem').innerHTML = `<span class='text-danger'>${errorMessages}</span>`
+                msgModal.show()
                 }
                 //alert(senha) //apenas para testes
-                msgModal.show()
             })
         })

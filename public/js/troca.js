@@ -36,13 +36,28 @@ async function carregaBeneficio(){
     document.getElementById("uPontos").innerHTML += ""
 }
 
-function pontos(){
+async function pontosUser(){
+    await fetch(`${urlBase}/usuario/pontos`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'access-token' : access_token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("uPontos").innerHTML = "Seus Pontos: " + data[0].pontos
+            pontuacao = data[0].pontos
+        })
+        return pontuacao
+}
+
+async function pontos(){
     isCheck = [] //Iniciando a variável de valores checkados
     var c = document.getElementsByClassName("pontos") // Iniciando a variável com endereçamento das checkboxes
     for (var i = 0; i < c.length; i++) { //Iniciando loop que chama a função
             for (var co = 0; co < c.length; co++){ // Loop de alimentação do array de checkboxes checados
                 isCheck.push(c[co].checked)
-                console.log(isCheck)
             }
             if (isCheck.includes(true)) // Se houver um valor verdadeiro ele mostra o total do resgate, senão, oculta novamente
                 document.getElementById("divsaldo").style.display = "block"
@@ -54,11 +69,11 @@ function pontos(){
             for (var co = 0; co < c.length; co++){
                 if(c[co].checked == true){ // alimentando a variável de soma de valores apenas dos valores checkados
                     s += Number(c[co].value)
-                    console.log(c)
+                    //console.log(c)
                 }
             }
             document.getElementById("saldo").innerHTML = "Total: " + s // substituindo o texto de um h3 para o valor total do resgate
-            if (s > 300){ // mudando a cor dos pontos caso ultrapasse o total de pontos do usuário, no caso 300
+            if (s > await pontosUser()){ // mudando a cor dos pontos caso ultrapasse o total de pontos do usuário, no caso 300
                 document.getElementById("saldo").style.color = "red"
             }
             else{

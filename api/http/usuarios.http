@@ -7,9 +7,10 @@ Content-Type: application/json
 
 {
     "nome": "Mateus",
-    "email": "sandman2871@gmail.com",
+    "email": "mateus@gmail.com",
     "senha": "Mateus123#",
-    "tipo": "Admin"
+    "tipo": "Cliente",
+    "pontos": 300
 }
 
 ###
@@ -32,3 +33,9 @@ Content-Type: application/json
 GET {{baseURL}}/id/66455346790bab4c8d53b4aa
 Content-Type: application/json
 access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIn0sImlhdCI6MTcxNjc1NTEyNywiZXhwIjoxNzE2ODQxNTI3fQ.mm6E1ESpyU2nMgi_kgn29FwiT8f89f8FyN694hJU2Z8
+
+
+###
+GET {{baseURL}}/pontos
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIiwidGlwbyI6IkFkbWluIn0sImlhdCI6MTcxNzQ1MTcxMCwiZXhwIjoxNzE3NTM4MTEwfQ.qDScLBYBWlJXXLithiGtBCnSldCkstt1LWBpsg5GTaw

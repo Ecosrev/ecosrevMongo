@@ -1,5 +1,7 @@
 import express from 'express'
 import {config} from 'dotenv'
+import fs from 'fs'
+import swaggerUI from 'swagger-ui-express'
 config() // carrega as variáveis do .env
 
 const app = express()
@@ -15,6 +17,16 @@ app.disable('x-powered-by')
 //Configurando o favicon
 app.use('/favicon.ico', express.static('public/images/logo-api.png'))
 
+
+//SWAGGER!!
+/* Rota da documentação Swagger */
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css"
+
+app.use('/api/doc', swaggerUI.serve, swaggerUI.setup(JSON.parse(fs.readFileSync('./api/swagger/swagger_output.json')),{customCss:
+      '.swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }',
+    customCssUrl: CSS_URL }))
+
+
 //Rota default
 app.get('/api', (req, res)=> {
     res.status(200).json({
@@ -23,6 +35,8 @@ app.get('/api', (req, res)=> {
     })
 })
 //Rotas da API
+
+
 app.use('/api/beneficio', RotasBeneficio)
 app.use('/api/usuario', RotasUsuarios)
 //Listen
