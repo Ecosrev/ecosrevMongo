@@ -1,5 +1,5 @@
 ![Foto de Fundo para Linkedin Amarelo Lâmpada Minimalista (1)](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/5f7ca8a9-9032-4ae4-9ca8-96eb2b656ffb)
-![image](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/e8a51278-7952-4913-a1d4-cf3e93bed726)![Foto de Fundo para Linkedin Amarelo Lâmpada Minimalista (1)](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/5f7ca8a9-9032-4ae4-9ca8-96eb2b656ffb)
+
 Grupo Ecosrev
 ---
 
