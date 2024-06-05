@@ -24,8 +24,8 @@ Confira o nosso backlog no link abaixo.
 Jira: https://ecosrev.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?epics=visible&issueParent=10016&atlOrigin=eyJpIjoiNDdlNzFlNmU3MTY1NGIwODhhMTgwNjIyZDc0MTEzNTAiLCJwIjoiaiJ9
 
 ## User Stories
-![image](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/8a999929-1574-4b42-9a56-2bdf09418eb6)
-![image](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/566c021b-6092-4090-98cc-36a03e7481f4)
+![USERSTORY-imagens-0](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/f9f8a74d-2583-4b7c-8928-74107bd9466e)
+![USERSTORY-imagens-1](https://github.com/Ecosrev/ecosrevMongo/assets/126609101/d7a17d64-5388-4352-8725-9cf7dcfcd84e)
 
 
 
