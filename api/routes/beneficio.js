@@ -19,6 +19,10 @@ check('data').matches(/^\d{4}-\d{2}-\d{2}$/)
 check('quantidade').isNumeric().withMessage('A quantidade deve ser um número'),
 ]
 
+const validaQuantidade = [
+  check('quantidade').isInt({ min: 0 }).withMessage('A quantidade não pode ser negativo')
+]
+
 
 
 /**
@@ -186,6 +190,23 @@ router.put('/', auth, validaBeneficio, async(req, res) => {
       res.status(202).json(beneficio) //Accepted           
   } catch (err){
     res.status(500).json({errors: err.message})
+  }
+})
+
+router.put('/resgate', auth, validaQuantidade, async (req, res) => {
+  let idDocumento = req.body._id //armazenamos o _id do documento
+  delete req.body._id //removemos o _id do body que foi recebido na req.
+  try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() })
+      }
+      const beneficio = await db.collection(nomeCollection)
+          .updateOne({ '_id': { $eq: new ObjectId(idDocumento) } },
+              { $set: {"quantidade": req.body.quantidade}})
+      res.status(202).json(beneficio) //Accepted           
+  } catch (err) {
+      res.status(500).json({ errors: err.message })
   }
 })
 export default router

@@ -4,7 +4,7 @@
 // GET - Lista todos os benefícios
 GET {{baseURL}}
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIiwidGlwbyI6IkFkbWluIn0sImlhdCI6MTcxNzI2MzY5MSwiZXhwIjoxNzE3MzUwMDkxfQ.B8c_os7XTlsBMAa_enkFmhXugPchU4Jf4GkCOVITqak
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY1ZTYwZmM5ZmVlNzc4MjIwZGNkZTY0IiwidGlwbyI6IkNsaWVudGUifSwiaWF0IjoxNzE3NjIzNjk0LCJleHAiOjE3MTc3MTAwOTR9.Y43SVrtKRf3CKcyExoui9e_WIWpgxL0CcIPxbH_gPgc
 
 ###
 // GET - Lista o benefício pelo ID
@@ -52,4 +52,15 @@ access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0N
     "endereco": "Av 31 de março",
     "pontos": 300,
     "quantidade": 30
+  }
+
+###
+
+PUT {{baseURL}}/resgate
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY1ZTYwZmM5ZmVlNzc4MjIwZGNkZTY0IiwidGlwbyI6IkNsaWVudGUifSwiaWF0IjoxNzE3NjIzNjk0LCJleHAiOjE3MTc3MTAwOTR9.Y43SVrtKRf3CKcyExoui9e_WIWpgxL0CcIPxbH_gPgc
+
+  {
+    "_id": "6626f79e35fe58b15fb70ad7",
+    "quantidade": 19
   }

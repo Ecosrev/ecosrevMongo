@@ -46,8 +46,11 @@ const validaUsuario = [
     check('tipo')
         .default('Cliente')
         .isIn(['Admin', 'Cliente']).withMessage('O tipo deve ser Admin ou Cliente'),
-    check('pontos').isNumeric().withMessage('Os pontos devem ser um número'),
 ]
+
+const validaPontos = [
+    check('pontos').isInt({ min: 0 }).withMessage('A quantidade não pode ser negativos')
+  ]
 
 //POST de Usuário
 router.post('/', validaUsuario, async (req, res) => {
@@ -70,17 +73,17 @@ router.post('/', validaUsuario, async (req, res) => {
 })
 
 // GET Usuário
-router.get('/', auth, async(req, res)=> {
-    try{
+router.get('/', auth, async (req, res) => {
+    try {
         const docs = []
         await db.collection(nomeCollection)
-        .find({},{senha: 0})
-        .sort({nome:1})
-        .forEach((doc) => {
-            docs.push(doc)
-          })
+            .find({}, { senha: 0 })
+            .sort({ nome: 1 })
+            .forEach((doc) => {
+                docs.push(doc)
+            })
         res.status(200).json(docs)
-    } catch (err){
+    } catch (err) {
         res.status(500).json({
             message: 'Erro ao obter a listagem dos usuários',
             error: `${err.message}`
@@ -90,42 +93,42 @@ router.get('/', auth, async(req, res)=> {
 
 router.get('/id/:id', auth, async (req, res) => {
     try {
-      const docs = []
-      await db.collection(nomeCollection)
-        .find({ '_id': { $eq: new ObjectId(req.params.id) } }, {})
-        .forEach((doc) => {
-          docs.push(doc)
-        })
-      res.status(200).json(docs)
+        const docs = []
+        await db.collection(nomeCollection)
+            .find({ '_id': { $eq: new ObjectId(req.params.id) } }, {})
+            .forEach((doc) => {
+                docs.push(doc)
+            })
+        res.status(200).json(docs)
     } catch (err) {
-      res.status(500).json({
-        errors: [{
-          value: `${err.message}`,
-          msg: 'Erro ao obter o usuário pelo ID',
-          param: '/id/:id'
-        }]
-      })
+        res.status(500).json({
+            errors: [{
+                value: `${err.message}`,
+                msg: 'Erro ao obter o usuário pelo ID',
+                param: '/id/:id'
+            }]
+        })
     }
-  })
+})
 
 const validaLogin = [
     check('email')
         .not().isEmpty().trim().withMessage('O email é obrigatório')
         .isEmail().withMessage('Informe um email válido para o login'),
     check('senha')
-        .not().isEmpty().trim().withMessage('A senha é obrigatória')    
+        .not().isEmpty().trim().withMessage('A senha é obrigatória')
 ]
 
-router.get('/pontos', auth, async(req, res)=> {
-    try{
+router.get('/pontos', auth, async (req, res) => {
+    try {
         const docs = []
         await db.collection(nomeCollection)
-        .find({ '_id': { $eq: new ObjectId(req.usuario.id) } }, {})
-        .forEach((doc) => {
-            docs.push(doc)
-          })
+            .find({ '_id': { $eq: new ObjectId(req.usuario.id) } }, {})
+            .forEach((doc) => {
+                docs.push(doc)
+            })
         res.status(200).json(docs)
-    } catch (err){
+    } catch (err) {
         res.status(500).json({
             message: 'Erro ao obter a listagem dos pontos do usuário',
             error: `${err.message}`
@@ -133,54 +136,70 @@ router.get('/pontos', auth, async(req, res)=> {
     }
 })
 
-router.post('/login', validaLogin, async(req, res)=> {
+router.post('/login', validaLogin, async (req, res) => {
     const schemaErrors = validationResult(req)
-    if(!schemaErrors.isEmpty()){
-        return res.status(403).json(({errors: schemaErrors.array()}))
+    if (!schemaErrors.isEmpty()) {
+        return res.status(403).json(({ errors: schemaErrors.array() }))
     }
     //obtendo os dados para o login
-    const {email, senha} = req.body
-    try{
+    const { email, senha } = req.body
+    try {
         //verificar se o email existe no Mongodb
         let usuario = await db.collection(nomeCollection)
-        .find({email}).limit(1).toArray()
-       //Se o array estiver vazio, é que o email não existe
-       if (!usuario.length)
-           return res.status(404).json({ //not found
-            errors: [{
-                value: `${email}`,
-                msg: `O email ${email} não está cadastrado!`,
-                param: 'email'
-            }]
-           })
-       //Se o email existir, comparamos se a senha está correta
-       const isMatch = await bcrypt.compare(senha, usuario[0].senha)    
-       if (!isMatch)
-          return res.status(403).json({ //forbidden
-            errors: [{
-                value: 'senha',
-                msg: 'A senha informada está incorreta ',
-                param: 'senha'
-            }]
-          })
-        const redirectUrl = usuario[0].tipo === 'Admin' ? 'menu.html' : 'menuUser.html'
-       //Iremos gerar o token JWT
-       jwt.sign(
-        { usuario: {id: usuario[0]._id, tipo: usuario[0].tipo}},
-          process.env.SECRET_KEY,
-          { expiresIn: process.env.EXPIRES_IN },
-          (err, token) => {
-            if (err) throw err
-            res.status(200).json({
-                access_token: token,
-                redirect_url: redirectUrl
+            .find({ email }).limit(1).toArray()
+        //Se o array estiver vazio, é que o email não existe
+        if (!usuario.length)
+            return res.status(404).json({ //not found
+                errors: [{
+                    value: `${email}`,
+                    msg: `O email ${email} não está cadastrado!`,
+                    param: 'email'
+                }]
             })
-          }
-       )
-    } catch (e){
+        //Se o email existir, comparamos se a senha está correta
+        const isMatch = await bcrypt.compare(senha, usuario[0].senha)
+        if (!isMatch)
+            return res.status(403).json({ //forbidden
+                errors: [{
+                    value: 'senha',
+                    msg: 'A senha informada está incorreta ',
+                    param: 'senha'
+                }]
+            })
+        const redirectUrl = usuario[0].tipo === 'Admin' ? 'menu.html' : 'menuUser.html'
+        //Iremos gerar o token JWT
+        jwt.sign(
+            { usuario: { id: usuario[0]._id, tipo: usuario[0].tipo } },
+            process.env.SECRET_KEY,
+            { expiresIn: process.env.EXPIRES_IN },
+            (err, token) => {
+                if (err) throw err
+                res.status(200).json({
+                    access_token: token,
+                    redirect_url: redirectUrl
+                })
+            }
+        )
+    } catch (e) {
         console.error(e)
     }
 
 })
-  
+
+router.put('/pontos', auth, validaPontos, async (req, res) => {
+    let idDocumento = req.usuario.id //armazenamos o _id do documento
+    delete req.body._id //removemos o _id do body que foi recebido na req.
+    try {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+        const usuario = await db.collection(nomeCollection)
+            .updateOne({ '_id': { $eq: new ObjectId(idDocumento) } },
+                { $set: {"pontos": req.body.pontos}})
+        res.status(202).json(usuario) //Accepted           
+    } catch (err) {
+        res.status(500).json({ errors: err.message })
+    }
+  })
 export default router

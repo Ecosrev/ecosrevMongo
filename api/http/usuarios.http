@@ -25,7 +25,7 @@ POST {{baseURL}}/login
 Content-Type: application/json
 
 {
-    "email": "sandman2871@gmail.com",
+    "email": "mateus@gmail.com",
     "senha": "Mateus123#"
 }
 
@@ -38,4 +38,15 @@ access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0N
 ###
 GET {{baseURL}}/pontos
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIiwidGlwbyI6IkFkbWluIn0sImlhdCI6MTcxNzQ1MTcxMCwiZXhwIjoxNzE3NTM4MTEwfQ.qDScLBYBWlJXXLithiGtBCnSldCkstt1LWBpsg5GTaw
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIiwidGlwbyI6IkFkbWluIn0sImlhdCI6MTcxNzYyMzU2MiwiZXhwIjoxNzE3NzA5OTYyfQ.97oaMVJjtF5maglMRRPrGCQVUlOKwfTF7mIJ82DS0m8
+
+
+###
+
+PUT {{baseURL}}/pontos
+Content-Type: application/json
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY1ZTYwZmM5ZmVlNzc4MjIwZGNkZTY0IiwidGlwbyI6IkNsaWVudGUifSwiaWF0IjoxNzE3NjIzNjk0LCJleHAiOjE3MTc3MTAwOTR9.Y43SVrtKRf3CKcyExoui9e_WIWpgxL0CcIPxbH_gPgc
+
+{
+    "pontos": 600
+  }
