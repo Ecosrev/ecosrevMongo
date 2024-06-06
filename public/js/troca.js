@@ -86,29 +86,6 @@ async function pontos() {
         }
     }
 }
-
-async function removeBeneficio(id) {
-    if (confirm('Deseja realmente excluir este beneficio?')) {
-        await fetch(`${urlBase}/beneficio/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'access-token': access_token
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    carregaBeneficio() //atualizamos a UI
-                }
-            })
-            .catch(error => {
-                document.getElementById('mensagem').innerHTML = `Erro ao remover o beneficio: ${error.message}`
-                resultadoModal.show() //exibe o modal com o erro
-            })
-    }
-}
-
 async function resgate() {
     var soma = 0
     let ids = []
