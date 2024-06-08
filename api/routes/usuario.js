@@ -17,7 +17,8 @@ const validaUsuario = [
         .not().isEmpty().trim().withMessage('É obrigatório informar o nome')
         .isAlpha('pt-BR', { ignore: ' ' }).withMessage('Informe apenas texto')
         .isLength({ min: 3 }).withMessage('Informe no mínimo 3 caracteres')
-        .isLength({ max: 100 }).withMessage('Informe no máximo 100 caracteres'),
+        .isLength({ max: 100 }).withMessage('Informe no máximo 100 caracteres')
+        .not().matches(/^\d+$/).withMessage('O nome não pode conter apenas números'),
     check('email')
         .not().isEmpty().trim().withMessage('É obrigatório informar o email')
         .isLowercase().withMessage('Não são permitidas maiúsculas')
@@ -49,7 +50,7 @@ const validaUsuario = [
 ]
 
 const validaPontos = [
-    check('pontos').isInt({ min: 0 }).withMessage('A quantidade não pode ser negativos')
+    check('pontos').isInt({ min: 0 }).withMessage('Os pontos não podem ser negativos')
   ]
 
 //POST de Usuário

@@ -2,6 +2,7 @@ import express from 'express'
 import { connectToDatabase } from '../utils/mongodb.js'
 import { check, validationResult } from 'express-validator'
 import auth from '../middleware/auth.js'
+import { isAfter } from 'date-fns';
 
 const router = express.Router()
 const { db, ObjectId } = await connectToDatabase()
@@ -11,16 +12,27 @@ const validaBeneficio = [
 check('nome')
   .not().isEmpty().trim().withMessage('É obrigatório informar o nome do benefício')
   .isLength({min:5}).withMessage('O nome é muito curto. Mínimo de 5') 
-  .isLength({max:200}).withMessage('O nome é muito longo. Máximo de 200'),
-check('endereco').notEmpty().withMessage('O endereço é obrigatório'),
-check('pontos').isNumeric().withMessage('Os pontos devem ser um número'),
+  .isLength({max:200}).withMessage('O nome é muito longo. Máximo de 200')
+  .not().matches(/^\d+$/).withMessage('O nome não pode conter apenas números'),
+check('endereco').notEmpty().withMessage('O endereço é obrigatório')
+  .isLength({min:5}).withMessage('O endereço é muito curto. Mínimo de 5') 
+  .isLength({max:500}).withMessage('O endereço é muito longo. Máximo de 500')
+  .matches(/^[a-zA-Z0-9\s\.,#-]+$/).withMessage('O endereço contém caracteres inválidos')
+  .not().matches(/^\s+$/).withMessage('O endereço não pode conter apenas espaços em branco'),
+check('pontos').isNumeric().withMessage('Os pontos devem ser um número').isInt({ min: 0 }).withMessage('Os pontos não podem ser negativos'),
 check('data').matches(/^\d{4}-\d{2}-\d{2}$/)
-     .withMessage('O formato de data é inválido. Informe yyyy-mm-dd'),
-check('quantidade').isNumeric().withMessage('A quantidade deve ser um número'),
+     .withMessage('O formato de data é inválido. Informe yyyy-mm-dd')
+     .custom((value, { req }) => {
+      if (!isAfter(new Date(value), new Date())) {
+        throw new Error('A data deve ser maior do que o dia de hoje');
+      }
+      return true;
+    }),
+check('quantidade').isNumeric().withMessage('A quantidade deve ser um número').isInt({ min: 0 }).withMessage('A quantidade não pode ser negativa'),
 ]
 
 const validaQuantidade = [
-  check('quantidade').isInt({ min: 0 }).withMessage('A quantidade não pode ser negativo')
+  check('quantidade').isInt({ min: 0 }).withMessage('A quantidade não pode ser negativa')
 ]
 
 
