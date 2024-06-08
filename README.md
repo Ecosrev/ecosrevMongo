@@ -18,6 +18,11 @@
 
 O Projeto EcosRev é um website desenvolvido com o propósito de incentivar o descarte correto de resíduos eletroeletrônicos, promovendo a conexão entre empresas coletoras de lixo eletrônico e cidadãos. O objetivo principal é facilitar o processo de descarte, aumentando a conscientização ambiental e contribuindo para a preservação do meio ambiente.
 
+
+## 💡Protótipo 
+
+Acesse o link de visualização interativo do nosso Figma: https://www.figma.com/design/szHO2FNtWtuBxW8hrbRYau/ECOSREV-BD?node-id=0-1&t=OjwOPtuo1edvRLnb-1
+
 ## 🔄Backlogs 
 Confira o nosso backlog no link abaixo. 
 
