@@ -2,7 +2,6 @@ const urlBase = 'http://localhost:4000/api'
 const access_token = localStorage.getItem('token') || null
 const resultadoModal = new bootstrap.Modal(document.getElementById('modalMensagem'))
 const attForm = new bootstrap.Modal(document.getElementById('modalForm'))
-var tipo 
 
 document.addEventListener('DOMContentLoaded', async () => {
     tipo = await tipo()
@@ -28,11 +27,11 @@ async function tipo(){
         return tipo
 }
 
-async function carregaBeneficio(){
+async function carregaUsuario(){
     const tabela = document.getElementById('dadosTabela')
     tabela.innerHTML = '' //limpa antes de recarregar
     //Faremos a requisição GET para a nossa API REST
-    await fetch(`${urlBase}/beneficio`, {
+    await fetch(`${urlBase}/usuario`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -42,17 +41,14 @@ async function carregaBeneficio(){
     .then(response => response.json())
     .then(data => {
         //console.table(data)
-        data.forEach(beneficio => {
+        data.forEach(usuario => {
             tabela.innerHTML += `
             <tr>
-              <td>${beneficio.nome}</td>
-              <td>${new Date(beneficio.data).toLocaleDateString()}</td>
-              <td>${beneficio.endereco}</td>
-              <td>${beneficio.pontos}</td>
-              <td>${beneficio.quantidade}</td>
+              <td>${usuario.nome}</td>
+              <td>${usuario.email}</td>
+              <td>${usuario.pontos}</td>
               <td>
-        <button class='btn btn-danger btn-sm' onclick='removeBeneficio("${beneficio._id}")'>🗑 Excluir </button>
-        <button class='btn btn-success btn-sm' onclick='carregaAtt("${beneficio._id}")'>📝 Atualizar </button>
+        <button class='btn btn-success btn-sm' onclick='carregaAtt("${usuario._id}")'>📝 Atualizar </button>
               </td>
             </tr>
             `
@@ -60,41 +56,21 @@ async function carregaBeneficio(){
     })
 }
 
-async function removeBeneficio(id){
-    if(confirm('Deseja realmente excluir este beneficio?')){
-        await fetch(`${urlBase}/beneficio/${id}`, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json',
-            'access-token' : access_token
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.deletedCount > 0){carregaBeneficio() //atualizamos a UI
-            }
-        })
-        .catch(error => {
-            document.getElementById('mensagem').innerHTML = `Erro ao remover o beneficio: ${error.message}`
-            resultadoModal.show() //exibe o modal com o erro
-        })
-    }
-}
-
-async function atualizaBeneficio(beneficio){
-    await fetch(`${urlBase}/beneficio`, {
+async function atualizaUsuario(usuario){
+    await fetch(`${urlBase}/usuario/pontosPut`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'access-token' : access_token
+            'access-token': access_token
         },
-        body: JSON.stringify(beneficio)
+        body: JSON.stringify(usuario)
     })
     .then(response => response.json())
     .then(data => {
         if (data.acknowledged) {
-            alert('Beneficio atualizado com sucesso!')
+            alert('Usuário atualizado com sucesso!')
             //atualizamos a listagem
-            carregaBeneficio()
+            carregaUsuario()
         } else if (data.errors){
  const errorMessages = data.errors.map(error => error.msg).join('\n')
  document.getElementById('mensagem').innerHTML = `<span class='text-danger'>${errorMessages}</span>`
@@ -106,22 +82,19 @@ async function atualizaBeneficio(beneficio){
 document.getElementById('botaoAtt').addEventListener('click', function (event){
     event.preventDefault() // evita o recarregamento
     //let beneficio = {} // Objeto beneficio
-    beneficio = {
+    usuario = {
         "_id": document.getElementById('idAtt').value,
         "nome": document.getElementById('nome1').value,
-        "data": document.getElementById('data2').value,
-        "endereco": document.getElementById('endereco3').value,
         "pontos": document.getElementById('pontos4').value,
-        "quantidade": document.getElementById('quantidade5').value
     } /* fim do objeto */
     //alert(JSON.stringify(beneficio)) //apenas para testes
-    atualizaBeneficio(beneficio)
+    atualizaUsuario(usuario)
     attForm.hide()
 })
 
 async function carregaAtt(id){
     attForm.show()
-    await fetch(`${urlBase}/beneficio/id/${id}`, {
+    await fetch(`${urlBase}/usuario/id/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -133,9 +106,6 @@ async function carregaAtt(id){
         //console.log(data[0]._id)
         document.getElementById('idAtt').value = data[0]._id
         document.getElementById('nome1').value = data[0].nome
-        document.getElementById('data2').value = data[0].data
-        document.getElementById('endereco3').value = data[0].endereco
         document.getElementById('pontos4').value = data[0].pontos
-        document.getElementById('quantidade5').value = data[0].quantidade
     })
 }

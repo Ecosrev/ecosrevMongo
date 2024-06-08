@@ -28,7 +28,7 @@ access-token: etJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjYzO
 // POST - Insere um novo benefício
 POST {{baseURL}}
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0MTYxYjc5YTk0ZTYxZTRlYWRjNmQ2In0sImlhdCI6MTcxNTU2MTA2OCwiZXhwIjoxNzE1NjQ3NDY4fQ.LsmGiyFKhhBV3z9eomvLgfnt9r8VltAw_dNyG7bXTRk
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY1ZTYwZmM5ZmVlNzc4MjIwZGNkZTY0IiwidGlwbyI6IkNsaWVudGUifSwiaWF0IjoxNzE3ODc0NTI4LCJleHAiOjE3MTc5NjA5Mjh9.KlgyIz0WWtd3naKCYTbBmtiCnblkoU54icDtnIYSFvQ
 
 {
     "nome": "Show do Matue",

@@ -7,10 +7,6 @@ msg: 'Acesso negado. É obrigatório o envio do token JWT'
     })
     try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY)
-        /* o decoded irá conter:
-          payload - id do usuário
-          exp (expiration) - Data de expiração
-          iat (issued at) - Data de criação */
        req.usuario = await decoded.usuario
        next() //direcionamos para o endpoint
     } catch(e) {

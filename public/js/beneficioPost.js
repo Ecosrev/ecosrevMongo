@@ -2,6 +2,30 @@ const urlBase = 'http://localhost:4000/api'
 const access_token = localStorage.getItem('token') || null
 const resultadoModal = new bootstrap.Modal(document.getElementById('modalMensagem'))
 
+document.addEventListener('DOMContentLoaded', async () => {
+    tipo = await tipo()
+    console.log(tipo)    
+    if(tipo != "Admin"){
+            alert('Acesso negado. Não é admin.');
+            window.location.href = '/index.html';
+        }
+});
+
+async function tipo(){
+    await fetch(`${urlBase}/usuario/pontos`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'access-token': access_token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            tipo = data[0].tipo
+        })
+        return tipo
+}
+
 document.getElementById('formBeneficio').addEventListener('submit', function (event){
     event.preventDefault() // evita o recarregamento
     let beneficio = {} // Objeto beneficio

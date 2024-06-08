@@ -17,7 +17,7 @@ Content-Type: application/json
 // GET - Lista todos os usuários
 GET {{baseURL}}
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIiwidGlwbyI6IkFkbWluIn0sImlhdCI6MTcxNzI2Mzg1MywiZXhwIjoxNzE3MzUwMjUzfQ.uSqEAsaGIV14dmLCbx6oUQRtX37qinyqSB1VaS60JkQ
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY1ZTYwZmM5ZmVlNzc4MjIwZGNkZTY0IiwidGlwbyI6IkNsaWVudGUifSwiaWF0IjoxNzE3ODgwNTM5LCJleHAiOjE3MTc5NjY5Mzl9.I08ZprBFw7gRba5YB-T_0C6hqGp8BVmu6_rtXoCUpeg
 
 ###
 // POST - Efetua o login
@@ -32,7 +32,7 @@ Content-Type: application/json
 ###
 GET {{baseURL}}/id/66455346790bab4c8d53b4aa
 Content-Type: application/json
-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY0NTUzNDY3OTBiYWI0YzhkNTNiNGFhIn0sImlhdCI6MTcxNjc1NTEyNywiZXhwIjoxNzE2ODQxNTI3fQ.mm6E1ESpyU2nMgi_kgn29FwiT8f89f8FyN694hJU2Z8
+access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjY1ZTYwZmM5ZmVlNzc4MjIwZGNkZTY0IiwidGlwbyI6IkNsaWVudGUifSwiaWF0IjoxNzE3ODc0NTI4LCJleHAiOjE3MTc5NjA5Mjh9.KlgyIz0WWtd3naKCYTbBmtiCnblkoU54icDtnIYSFvQ
 
 
 ###

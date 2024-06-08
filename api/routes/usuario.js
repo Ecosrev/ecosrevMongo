@@ -202,4 +202,22 @@ router.put('/pontos', auth, validaPontos, async (req, res) => {
         res.status(500).json({ errors: err.message })
     }
   })
+
+  router.put('/pontosPut', auth, validaPontos, async (req, res) => {
+    let idDocumento = req.body._id //armazenamos o _id do documento
+    delete req.body._id //removemos o _id do body que foi recebido na req.
+    try {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+        const usuario = await db.collection(nomeCollection)
+            .updateOne({ '_id': { $eq: new ObjectId(idDocumento) } },
+                { $set: {"pontos": req.body.pontos}})
+        res.status(202).json(usuario) //Accepted           
+    } catch (err) {
+        res.status(500).json({ errors: err.message })
+    }
+  })
 export default router
+

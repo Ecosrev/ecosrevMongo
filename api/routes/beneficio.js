@@ -10,7 +10,7 @@ const nomeCollection = 'beneficio'
 const validaBeneficio = [
 check('nome')
   .not().isEmpty().trim().withMessage('É obrigatório informar o nome do benefício')
-  .isLength({min:5}).withMessage('O nome é muito curto. Mínimo de 5')  
+  .isLength({min:5}).withMessage('O nome é muito curto. Mínimo de 5') 
   .isLength({max:200}).withMessage('O nome é muito longo. Máximo de 200'),
 check('endereco').notEmpty().withMessage('O endereço é obrigatório'),
 check('pontos').isNumeric().withMessage('Os pontos devem ser um número'),
