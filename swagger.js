@@ -9,7 +9,7 @@ const doc = {
         description: "➡️Documentação gerada automaticamente pelo módulo <a href='https://github.com/davibaltar/swagger-autogen' target='_blank'>swagger-autogen</a>."
     },
     host: '',// LINK DO VERCEL VAI AQUI
-    basePath: "/",
+    basePath: "/api",
     schemes: ['http'], //NO VERCEL DARA ERRO, TROCAR POR HTTPS AMEM
     consumes: ['application/json'],
     produces: ['application/json'],

@@ -3,8 +3,7 @@ const access_token = localStorage.getItem('token') || null
 const resultadoModal = new bootstrap.Modal(document.getElementById('modalMensagem'))
 
 document.addEventListener('DOMContentLoaded', async () => {
-    tipo = await tipo()
-    console.log(tipo)    
+    tipo = await tipo()   
     if(tipo != "Admin"){
             alert('Acesso negado. Não é admin.');
             window.location.href = '/index.html';

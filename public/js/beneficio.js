@@ -5,8 +5,7 @@ const attForm = new bootstrap.Modal(document.getElementById('modalForm'))
 var tipo 
 
 document.addEventListener('DOMContentLoaded', async () => {
-    tipo = await tipo()
-    console.log(tipo)    
+    tipo = await tipo()  
     if(tipo != "Admin"){
             alert('Acesso negado. Não é admin.');
             window.location.href = '/index.html';
