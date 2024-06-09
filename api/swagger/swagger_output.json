@@ -27,6 +27,10 @@
   "paths": {
     "/api": {
       "get": {
+        "tags": [
+          "Teste"
+        ],
+        "summary": "GET para teste sem autenticação",
         "description": "",
         "responses": {
           "200": {
@@ -37,7 +41,11 @@
     },
     "/api/beneficio/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "GET recebendo todos os benefícios",
+        "description": "Função chamada para executar o GET com todos os benefícios a ser exibido",
         "parameters": [
           {
             "name": "limit",
@@ -62,10 +70,19 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "POST para cadastrar um novo benefício",
+        "description": "Função chamada para executar o POST adicionando um novo benefício",
         "responses": {
           "201": {
             "description": "Criado"
@@ -76,10 +93,19 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "PUT recebendo um único beneficio pelo ID a ser modificado",
+        "description": "Função chamada para executar o PUT com um único benefício a ser modificado pelo seu ID",
         "parameters": [
           {
             "name": "body",
@@ -104,12 +130,21 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/beneficio/gt": {
       "get": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "GET recebendo todos os benefícios com filtros",
+        "description": "Função chamada para executar o GET com todos os benefícios a ser exibido utilizando um filtro",
         "parameters": [
           {
             "name": "limit",
@@ -134,12 +169,21 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/beneficio/id/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "GET recebendo um benefício pelo ID",
+        "description": "Função chamada para executar o GET exibindo apenas um único benefício pelo seu ID",
         "parameters": [
           {
             "name": "id",
@@ -155,12 +199,21 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/beneficio/nome/{filtro}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "GET recebendo todos os benefícios com filtros",
+        "description": "Função chamada para executar o GET com todos os benefícios a ser exibido utilizando um filtro",
         "parameters": [
           {
             "name": "filtro",
@@ -176,12 +229,21 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/beneficio/{id}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "DELETE recebendo um benefício pelo ID",
+        "description": "Função chamada para executar o DELETE de apenas um benefício pelo seu ID",
         "parameters": [
           {
             "name": "id",
@@ -197,12 +259,63 @@
           "404": {
             "description": "Não Encontrado"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/beneficio/resgate": {
+      "put": {
+        "tags": [
+          "Benefícios"
+        ],
+        "summary": "PUT recebendo o ID do benefício no qual será alterado pelo resgate",
+        "description": "Função chamada para executar o PUT com um benefício específico a ser modificado pelo resgate do mesmo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "example": "any"
+                },
+                "quantidade": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Aceito"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/usuario/": {
       "post": {
-        "description": "",
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Post para cadastrar usuário",
+        "description": "Função chamada para executar o POST do usuário com suas devidas validações",
         "parameters": [
           {
             "name": "body",
@@ -227,10 +340,19 @@
           "403": {
             "description": "Acesso Negado"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "get": {
-        "description": "",
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "GET recebendo todos usuários",
+        "description": "Função chamada para executar o GET com todos usuário",
         "responses": {
           "200": {
             "description": "OK"
@@ -238,12 +360,21 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/usuario/id/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "GET recebendo usuário pelo ID",
+        "description": "Função chamada para executar o GET com o ID de um usuário específico",
         "parameters": [
           {
             "name": "id",
@@ -259,12 +390,83 @@
           "500": {
             "description": "Erro Interno do Servidor"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/usuario/pontos": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "GET recebendo os pontos do usuário",
+        "description": "Função chamada para executar o GET com a pontuação do usuário",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "PUT recebendo a pontuação do usuário",
+        "description": "Função chamada para executar o PUT com a pontuação do usuário a ser modificada",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "example": "any"
+                },
+                "pontos": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Aceito"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/usuario/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "POST executando o Login do usuário",
+        "description": "Função chamada para executar o POST do usuário com suas devidas verificações",
         "parameters": [
           {
             "name": "body",
@@ -292,7 +494,54 @@
           "404": {
             "description": "Não Encontrado"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/api/usuario/pontosPut": {
+      "put": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "PUT recebendo a pontuação do usuário",
+        "description": "Função chamada para executar o PUT com a pontuação do usuário afim de ser modificada na pagina de transação",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "example": "any"
+                },
+                "pontos": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Aceito"
+          },
+          "400": {
+            "description": "Solicitação Inválida"
+          },
+          "500": {
+            "description": "Erro Interno do Servidor"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     }
   },
