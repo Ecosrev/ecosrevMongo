@@ -10,10 +10,6 @@ h5 {
     margin-left: 15%;
 }
 
-.arvore {
-    position: fixed;
-    margin-left: 70%;
-}
 
 .texto {
     margin-top: 110px;
@@ -22,14 +18,13 @@ h5 {
 footer {
     position: fixed;
     bottom: 0;
+    height: 3rem;
+    margin-left: 0;
     width: 100%;
-    height: 2rem;
-    margin-left: 20px;
-    width: 98%;
-    border-top: 1px solid rgba(87, 87, 87, 0.25);
     padding-top: 20px;
-    color: rgba(87, 87, 87, 0.7);
-    margin-bottom: 15px;
+    color: white;
+    margin-bottom: 0;
+    background-color: rgba(153, 196, 68, 100%);
 }
 footer div{
     display: inline-block;
@@ -51,6 +46,7 @@ table {
     margin: 0 auto; /* Centraliza a tabela na página */
     padding: 20px; /* Reduz o espaço ao redor das células */
     margin-top: 10px;
+
 }
 th, td {
     border: 1px solid #dddddd;
@@ -63,10 +59,13 @@ th {
 
 tbody{
     background-color: white;
+    
 }
 thead {
     color: white; /* Cor do texto na thead */
 }
+
+
 #botaoCadastro{
     margin-left: 0;
 }
@@ -182,14 +181,26 @@ td button{
     width: 200px;
     text-align: center;
     margin-left: 70%;
-    
+    margin-top: 10px;
 }
 
-#carrossel{
-    justify-content: center;
-    width: 50%;
-}
-#carrosselPosition{
-    display: flex;
-    align-items: center;
-}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  #botaoResgate{
+    margin-left: 0;
+  }
+
+
+  #btnNav{
+    color: white;
+  }
+
+  #cancelar{
+    margin-top: 10px;
+  }
