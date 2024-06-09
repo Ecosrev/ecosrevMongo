@@ -48,7 +48,7 @@ async function carregaUsuario(){
               <td>${usuario.email}</td>
               <td>${usuario.pontos}</td>
               <td>
-        <button class='btn btn-success btn-sm' onclick='carregaAtt("${usuario._id}")'>📝 Atualizar </button>
+        <button class='btnAtualizar' onclick='carregaAtt("${usuario._id}")'>Atualizar </button>
               </td>
             </tr>
             `

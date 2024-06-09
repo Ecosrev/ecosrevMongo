@@ -51,8 +51,8 @@ async function carregaBeneficio(){
               <td>${beneficio.pontos}</td>
               <td>${beneficio.quantidade}</td>
               <td>
-        <button class='btn btn-danger btn-sm' onclick='removeBeneficio("${beneficio._id}")'>🗑 Excluir </button>
-        <button class='btn btn-success btn-sm' onclick='carregaAtt("${beneficio._id}")'>📝 Atualizar </button>
+        <button class='btnExcluir' onclick='removeBeneficio("${beneficio._id}")'>Excluir </button>
+        <button class='btnAtualizar' onclick='carregaAtt("${beneficio._id}")'> Atualizar </button>
               </td>
             </tr>
             `
